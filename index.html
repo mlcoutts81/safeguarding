@@ -1,0 +1,155 @@
+import React from 'react';
+import { 
+  ShieldCheck, 
+  Gamepad2, 
+  Smartphone, 
+  Monitor, 
+  Lock, 
+  MessageCircle, 
+  EyeOff, 
+  MapPin,
+  CheckCircle2,
+  Info
+} from 'lucide-react';
+
+const App = () => {
+  const devices = [
+    {
+      title: "Gaming Consoles",
+      icon: <Gamepad2 className="w-8 h-8 text-indigo-600" />,
+      color: "bg-indigo-50",
+      border: "border-indigo-200",
+      steps: [
+        { label: "Ad Privacy", detail: "Opt-out of 'Interest-based ads' in Account Settings." },
+        { label: "Data Sharing", detail: "Disable 'Share gameplay data' with 3rd parties." },
+        { label: "Interaction", detail: "Set voice/text chat to 'Friends Only'." }
+      ]
+    },
+    {
+      title: "Phones & Tablets",
+      icon: <Smartphone className="w-8 h-8 text-emerald-600" />,
+      color: "bg-emerald-50",
+      border: "border-emerald-200",
+      steps: [
+        { label: "Ad Tracking", detail: "Reset Ad ID & use 'Limit Ad Tracking' (iOS/Android)." },
+        { label: "Location", detail: "Disable 'Precise Location' for games & social apps." },
+        { label: "Controls", detail: "Enable Apple Screen Time or Google Family Link." }
+      ]
+    },
+    {
+      title: "PCs & Web",
+      icon: <Monitor className="w-8 h-8 text-sky-600" />,
+      color: "bg-sky-50",
+      border: "border-sky-200",
+      steps: [
+        { label: "Extensions", detail: "Install uBlock Origin to block tracking scripts." },
+        { label: "Personalization", detail: "Toggle off 'Personalized Ads' in Google/MS accounts." },
+        { label: "Safe Modes", detail: "Use Restricted Mode on YouTube and Roblox." }
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-900">
+      {/* Header */}
+      <header className="max-w-5xl mx-auto text-center mb-12">
+        <div className="inline-flex items-center justify-center p-3 bg-indigo-600 text-white rounded-2xl mb-4 shadow-lg">
+          <ShieldCheck className="w-10 h-10" />
+        </div>
+        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">
+          Safe Screens, Small Steps
+        </h1>
+        <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          A parent's guide to privacy and data protection for children aged <strong>4–11</strong>.
+        </p>
+      </header>
+
+      {/* The "Big Three" Principles */}
+      <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col items-center text-center">
+          <div className="p-3 rounded-full bg-rose-100 text-rose-600 mb-4">
+            <EyeOff className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-lg mb-2 text-rose-900">Stop the Trail</h3>
+          <p className="text-sm text-slate-500">Reset Ad IDs to prevent companies from building a profile on your child.</p>
+        </div>
+        <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col items-center text-center">
+          <div className="p-3 rounded-full bg-amber-100 text-amber-600 mb-4">
+            <MapPin className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-lg mb-2 text-amber-900">Mask the Map</h3>
+          <p className="text-sm text-slate-500">Turn off precise location. Apps don't need to know exactly where you live.</p>
+        </div>
+        <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col items-center text-center">
+          <div className="p-3 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+            <MessageCircle className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-lg mb-2 text-indigo-900">Circle of Trust</h3>
+          <p className="text-sm text-slate-500">Set interaction settings to 'Friends Only' to block unknown contact.</p>
+        </div>
+      </section>
+
+      {/* Device Matrix */}
+      <main className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {devices.map((device, idx) => (
+          <div key={idx} className={`rounded-3xl border-2 ${device.border} ${device.color} overflow-hidden flex flex-col`}>
+            <div className="p-6 text-center border-b border-inherit">
+              <div className="flex justify-center mb-3">
+                {device.icon}
+              </div>
+              <h2 className="text-2xl font-bold text-slate-800">{device.title}</h2>
+            </div>
+            <div className="p-6 flex-grow bg-white/50">
+              <ul className="space-y-6">
+                {device.steps.map((step, sIdx) => (
+                  <li key={sIdx} className="flex gap-4">
+                    <div className="mt-1">
+                      <CheckCircle2 className="w-5 h-5 text-slate-400" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-800 text-sm uppercase tracking-wider">{step.label}</p>
+                      <p className="text-slate-600 text-sm leading-snug">{step.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </main>
+
+      {/* Conversational Tip */}
+      <section className="max-w-5xl mx-auto mt-12">
+        <div className="bg-indigo-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+            <ShieldCheck className="w-64 h-64" />
+          </div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+            <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-md">
+              <Info className="w-10 h-10 text-indigo-200" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-2">The Kitchen Table Chat</h3>
+              <p className="text-indigo-100 text-lg max-w-2xl leading-relaxed">
+                "We use these settings because your data is valuable—just like your favorite toys. We protect it so companies don't follow you around online."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer / Accessibility */}
+      <footer className="max-w-5xl mx-auto mt-12 border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div className="flex gap-4 mb-4 md:mb-0">
+          <span className="bg-slate-200 px-3 py-1 rounded-full font-medium">#SafeScreensSmallSteps</span>
+          <span className="bg-slate-200 px-3 py-1 rounded-full font-medium">#ScottishEdTech</span>
+        </div>
+        <p className="flex items-center gap-2">
+          <Lock className="w-4 h-4" /> High Contrast & Screen Reader Optimized
+        </p>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
